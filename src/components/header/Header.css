@@ -1,0 +1,29 @@
+.links {
+  background-color: #f84464;
+  color: #fafafa;
+}
+.logo span {
+color: #d71920;
+
+}
+/* Add these styles to your Header.css */
+
+.menu {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+  }
+  
+  .menu.open {
+    max-height: 500px; /* Adjust this value according to your menu's height */
+    opacity: 1;
+  }
+  
+  @media (min-width: 640px) {
+    .menu {
+      max-height: none;
+      opacity: 1;
+    }
+  }
+  

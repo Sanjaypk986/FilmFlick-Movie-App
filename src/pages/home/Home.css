@@ -1,0 +1,19 @@
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  ul {
+    scroll-behavior: smooth;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+ul li:hover{
+    color: #111;
+
+  }
