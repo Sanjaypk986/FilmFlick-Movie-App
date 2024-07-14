@@ -34,7 +34,7 @@ const UpComing = () => {
                 </h3>
                 <div className="relative">
                     <button
-                        className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-2 py-1 rounded-md z-10"
+                        className="absolute mx-2 left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-2 py-1 rounded-full z-10"
                         onClick={scrollLeft}
                     >
                         &#8592;
@@ -52,7 +52,7 @@ const UpComing = () => {
                     )}
                     </div>
                     <button
-                        className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-2 py-1 rounded-md z-10"
+                        className="absolute mx-2 right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-2 py-1 rounded-full z-10"
                         onClick={scrollRight}
                     >
                         &#8594;

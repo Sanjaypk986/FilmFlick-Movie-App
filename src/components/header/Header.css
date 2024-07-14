@@ -14,7 +14,7 @@ color: #d71920;
     max-height: 0;
     opacity: 0;
   }
-  
+
   .menu.open {
     max-height: 500px; /* Adjust this value according to your menu's height */
     opacity: 1;

@@ -8,6 +8,7 @@ import './index.css'
 import Root from './routes/root';
 import ErrorPage from './routes/ErrorPage';
 import Home from './pages/home/Home';
+import AllMovies,{loader as moviesloader} from './pages/all movies/AllMovies';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home/>,
+      },
+      {
+        path: "/movies",
+        element: <AllMovies/>,
+        loader: moviesloader
       },
     ],
   },

@@ -9,3 +9,9 @@ body{
 main{
   min-height: 100vh;
 }
+h1,h2,h3,h4{
+  color: #333;
+}
+.background{
+  background-color: #F5F5F5;
+}
