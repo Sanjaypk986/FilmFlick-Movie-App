@@ -15,13 +15,13 @@ const Banner = () => {
         arrows: true,
       };
   return (
-    <section className='py-3 overflow-hidden'>
+    <section className='pb-4  my-3 overflow-hidden'>
       <div className='p-2 '>
       <Slider {...settings}>
-      <img className='w-full rounded-md' src="https://assets-in.bmscdn.com/promotions/cms/creatives/1717080055549_playcardweb.jpg" alt="Ad image" />
-      <img className='w-full rounded-md' src="https://assets-in.bmscdn.com/promotions/cms/creatives/1717080055549_playcardweb.jpg" alt="Ad image" />
-      <img className='w-full rounded-md' src="https://assets-in.bmscdn.com/promotions/cms/creatives/1717080055549_playcardweb.jpg" alt="Ad image" />
-      <img className='w-full rounded-md' src="https://assets-in.bmscdn.com/promotions/cms/creatives/1717080055549_playcardweb.jpg" alt="Ad image" />
+      <img className='w-full rounded-md' src="https://assetscdn1.paytm.com/images/catalog/view_item/2753828/1720788936964.jpg?format=webp&imwidth=1750" alt="Ad image" />
+      <img className='w-full rounded-md' src="https://assetscdn1.paytm.com/images/catalog/view_item/2755093/1720681654392.jpg?format=webp&imwidth=1750" alt="Ad image" />
+      <img className='w-full rounded-md' src="https://assetscdn1.paytm.com/images/catalog/view_item/2695834/1718274370943.jpg?format=webp&imwidth=1750" alt="Ad image" />
+      <img className='w-full rounded-md' src="https://assetscdn1.paytm.com/images/catalog/view_item/2699999/1719408000464.jpg?format=webp&imwidth=1750" alt="Ad image" />
       </Slider>
       </div>
     </section>
