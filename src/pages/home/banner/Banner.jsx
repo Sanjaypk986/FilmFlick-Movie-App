@@ -15,7 +15,7 @@ const Banner = () => {
         arrows: true,
       };
   return (
-    <section className='py-3'>
+    <section className='py-3 overflow-hidden'>
       <div className='p-2 '>
       <Slider {...settings}>
       <img className='w-full rounded-md' src="https://assets-in.bmscdn.com/promotions/cms/creatives/1717080055549_playcardweb.jpg" alt="Ad image" />

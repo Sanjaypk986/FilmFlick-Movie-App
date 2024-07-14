@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
 import "./Home.css";
 import { NavLinks } from "../../services/navLinks";
 import Banner from "./banner/Banner";
+import Recommended from "./recommended/Recommended";
 
 const Home = () => {
   return (
@@ -20,6 +20,7 @@ const Home = () => {
         </nav>
       </section>
       <Banner />
+      <Recommended />
     </main>
   );
 };
