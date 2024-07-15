@@ -9,7 +9,7 @@ import Root from './routes/root';
 import ErrorPage from './routes/ErrorPage';
 import Home from './pages/home/Home';
 import AllMovies,{loader as moviesloader} from './pages/all movies/AllMovies';
-import MoviePage from './pages/movie/MoviePage';
+import MoviePage, {loader as movieloader} from './pages/movie/MoviePage';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +29,7 @@ const router = createBrowserRouter([
       {
         path: "/movies/:movieId",
         element: <MoviePage/>,
+        loader: movieloader
       },
     ],
   },

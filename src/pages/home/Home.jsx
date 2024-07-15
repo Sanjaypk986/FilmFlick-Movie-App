@@ -15,7 +15,14 @@ const Home = () => {
       <Banner />
       <Recommended/>
       <AdBanner />
+      <section className="">
+            <div className="container mx-auto px-2 mt-3 py-4">
+                <h3 className="text-lg md:text-xl lg:text-xxl font-semibold pb-4">
+                    Upcoming Movies
+                </h3>
       <UpComing />
+      </div>
+      </section>
     </main>
   );
 };

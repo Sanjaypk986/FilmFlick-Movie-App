@@ -27,11 +27,7 @@ const UpComing = () => {
     };
 
     return (
-        <section className="">
-            <div className="container mx-auto px-2 mt-3 py-4">
-                <h3 className="text-lg md:text-xl lg:text-xxl font-semibold pb-4">
-                    Upcoming Movies
-                </h3>
+
                 <div className="relative">
                     <button
                         className="absolute mx-2 left-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-2 py-1 rounded-full z-10"
@@ -58,8 +54,6 @@ const UpComing = () => {
                         &#8594;
                     </button>
                 </div>
-            </div>
-        </section>
     );
 };
 

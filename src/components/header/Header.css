@@ -1,9 +1,12 @@
 .links {
-  background-color: #f84464;
+  background-color: #D71920;
   color: #fafafa;
 }
+.links:hover{
+  background-color: #b8252a;
+}
 .logo span {
-color: #d71920;
+color: #D71920;
 
 }
 /* Add these styles to your Header.css */
