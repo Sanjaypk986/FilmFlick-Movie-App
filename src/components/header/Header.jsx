@@ -37,7 +37,7 @@ const Header = () => {
             <Link to={'/movies'} className="links hidden sm:block py-1 px-3 rounded-md whitespace-nowrap">
               All Movies
             </Link>
-            <Link className="links hidden sm:block py-1 px-3 rounded-md whitespace-nowrap">
+            <Link to={'/account'} className="links hidden sm:block py-1 px-3 rounded-md whitespace-nowrap">
               Sign in
             </Link>
             <i
@@ -54,7 +54,7 @@ const Header = () => {
           <Link to="/" className="py-2 px-4 rounded-md">
             All Movies
           </Link>
-          <Link to="/about" className="py-2 px-4 rounded-md">
+          <Link to="/account" className="py-2 px-4 rounded-md">
             Sign in
           </Link>
           <Link to="/contact" className="py-2 px-4 rounded-md">

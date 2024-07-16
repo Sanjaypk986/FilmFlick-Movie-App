@@ -4,9 +4,11 @@ import { Link, useLoaderData } from "react-router-dom";
 import ReviewCard from "../../components/ReviewCard";
 import UpComing from "../home/upcoming/UpComing";
 import axios from "axios";
+import ReviewForm from "../../components/forms/ReviewForm";
+import { useDispatch, useSelector } from "react-redux";
+import { addReview } from "../../features/reviews/reviewSlice";
 
 export async function loader({ params }) {
- 
   const response = await axios.get(
     `http://localhost:3000/movies/${params.movieId}`
   );
@@ -14,26 +16,25 @@ export async function loader({ params }) {
 
   return { movie };
 }
-
 const MoviePage = () => {
-  const[reviews,setReviews] = useState([])
-  const {movie} = useLoaderData()
+  const reviews = useSelector((state) => state.review.reviews);
+  const dispatch = useDispatch();
+  const { movie } = useLoaderData();
+
   useEffect(() => {
-    // Scroll to the top of the page when the movie data changes
-    window.scrollTo(0, 0);
-  }, [movie]);
-  useEffect(() => {
-    axios.get(`http://localhost:3000/reviews?movie=${movie._id}`).then((response) => {
-      setReviews(response.data)
-    });
+    axios
+      .get(`http://localhost:3000/reviews?movie=${movie._id}`)
+      .then((response) => {
+        dispatch(addReview(response.data));
+        window.scrollTo(0, 0);
+      });
   }, [movie]);
   return (
     <main>
       <section
         className="h-128 w-full bg-cover relative bg-center overflow-hidden my-2"
         style={{
-          backgroundImage:
-            `url(${movie.poster})`,
+          backgroundImage: `url(${movie.poster})`,
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-70 transition duration-300 ease-in-out"></div>
@@ -65,7 +66,8 @@ const MoviePage = () => {
               {movie.language}
             </p>
             <p className="py-1 rounded-md px-2 text-xs sm:text-sm md:text-base  text-white font-semibold sm:my-2">
-              <span>{movie.duration}</span> • <span>{movie.genre}</span> • <span>{movie.releaseDate}</span>
+              <span>{movie.duration}</span> • <span>{movie.genre}</span> •{" "}
+              <span>{movie.releaseDate}</span>
             </p>
             <Link className=" links w-1/2 rounded-lg text-center py-2 px-3 font-semibold  sm:my-2">
               Book Ticket
@@ -83,16 +85,21 @@ const MoviePage = () => {
             {movie.description}
           </p>
         </div>
+        <div>
+          <h3 className="text-lg md:text-2xl  text-gray-800 font-semibold my-2 md:my-4">
+            Add reviews
+          </h3>
+          <ReviewForm movieId={movie._id} />
+        </div>
         <div className="border-b-2 pb-5">
           <h3 className="text-lg md:text-2xl  text-gray-800 font-semibold my-2 md:my-4">
             Top reviews
           </h3>
           <div className="pb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {
-              reviews && reviews.map((review)=>(
+            {reviews &&
+              reviews.map((review) => (
                 <ReviewCard key={review._id} review={review} />
-              ))
-            }
+              ))}
           </div>
         </div>
       </section>
