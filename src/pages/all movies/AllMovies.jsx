@@ -10,7 +10,7 @@ export async function loader({ params, request }) {
   // filtering using genre
   const selectedGenre = url.searchParams.get("genre");
 
-  let movieUrl = "http://localhost:3000/movies";
+  let movieUrl = `${import.meta.env.VITE_BASE_URL}/movies`;
 
   if (selectedLanguage || selectedGenre) {
     // Create an instance of URLSearchParams
@@ -27,7 +27,7 @@ export async function loader({ params, request }) {
     }
 
     // Append the query string to the base URL
-    movieUrl = `http://localhost:3000/movies?${searchParams.toString()}`;
+    movieUrl = `${import.meta.env.VITE_BASE_URL}/movies?${searchParams.toString()}`;
   }
 
   const response = await axios.get(movieUrl);

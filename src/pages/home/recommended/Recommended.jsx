@@ -9,7 +9,7 @@ const Recommended = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/movies');
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/movies`);
                 const movies = response.data;
                 setMovies(movies);
             } catch (error) {

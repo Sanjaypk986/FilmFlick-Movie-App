@@ -20,7 +20,7 @@ export default function LoginForm() {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('http://localhost:3000/auth/login',data,{withCredentials: true})
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/login`,data,{withCredentials: true})
       console.log("login succussfully");
       dispatch(changeLogginStatus(true))
       navigate('/')

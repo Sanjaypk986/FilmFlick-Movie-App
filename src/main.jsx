@@ -15,6 +15,7 @@ import MoviePage, {loader as movieloader} from './pages/movie/MoviePages';
 import SignUp from './pages/account/Signups';
 import Login from './pages/account/Login';
 import Logout from './pages/account/Logout';
+import UpcomingMoviePage,{loader as upcomingloader} from './pages/home/upcoming/UpcomingMoviePage';
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,11 @@ const router = createBrowserRouter([
       {
         path: "/logout",
         element: <Logout/>,
+      },
+      {
+        path: "/upcoming/:movieId",
+        element: <UpcomingMoviePage/>,
+        loader: upcomingloader
       },
     ],
   },

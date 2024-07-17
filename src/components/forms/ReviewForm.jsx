@@ -14,7 +14,7 @@ export default function ReviewForm({ movieId }) {
     };
 
     try {
-      const response = await axios.post(`http://localhost:3000/reviews`, payLoad, { withCredentials: true });
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/reviews`, payLoad, { withCredentials: true });
       dispatch(addOneReview(response.data));
       reset();
     } catch (error) {

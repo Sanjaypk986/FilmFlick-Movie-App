@@ -10,7 +10,7 @@ const Logout = () => {
     useEffect(() => {
         const logout = async()=>{
             try {
-                const response = await axios.get(`http://localhost:3000/auth/logout`,{withCredentials:true})
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/logout`,{withCredentials:true})
                 dispatch(changeLogginStatus(false))
                 navigate('/')
 

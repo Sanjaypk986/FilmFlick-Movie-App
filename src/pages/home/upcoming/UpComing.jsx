@@ -3,13 +3,13 @@ import MovieCard from '../../../components/MovieCard';
 import axios from 'axios';
 
 const UpComing = () => {
-    const [movies, setMovies] = useState([]);
+    const [upcoming, setUpcoming] = useState([]);
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/movies');
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/upcoming`);
                 const movies = response.data;
-                setMovies(movies);
+                setUpcoming(movies);
             } catch (error) {
                 console.log(error);
             }
@@ -39,9 +39,10 @@ const UpComing = () => {
                         ref={scrollContainerRef}
                         className="pb-4 grid grid-flow-col auto-cols-max gap-2 sm:gap-4 overflow-x-auto scrollbar-hide"
                     >
-                       {movies.length > 0 ? (
-                        movies.map((movie) => (
-                            <MovieCard key={movie._id} movie={movie} />
+                       {upcoming.length > 0 ? (
+                        upcoming.map((movie) => (
+                            <MovieCard key={movie._id}  movie={movie} 
+                            isUpcoming={true}/>
                         ))
                     ) : (
                         <p>Loading movies...</p>

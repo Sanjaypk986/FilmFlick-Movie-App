@@ -6,22 +6,19 @@ import AdBanner from "./adBanner/AdBanner";
 import UpComing from "./upcoming/UpComing";
 
 const Home = () => {
-
   return (
     <main>
-      <section className="bg-gray-200">
-
-      </section>
+      <section className="bg-gray-200"></section>
       <Banner />
-      <Recommended/>
+      <Recommended />
       <AdBanner />
       <section className="">
-            <div className="container mx-auto px-2 mt-3 py-4">
-                <h3 className="text-lg md:text-xl lg:text-xxl font-semibold pb-4">
-                    Upcoming Movies
-                </h3>
-      <UpComing />
-      </div>
+        <div className="container mx-auto px-2 mt-3 py-4">
+          <h3 className="text-lg md:text-xl lg:text-xxl font-semibold pb-4">
+            Upcoming Movies
+          </h3>
+          <UpComing />
+        </div>
       </section>
     </main>
   );

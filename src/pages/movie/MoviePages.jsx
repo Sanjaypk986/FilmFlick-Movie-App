@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./MoviePage.css";
 import { Link, useLoaderData } from "react-router-dom";
 import ReviewCard from "../../components/ReviewCard";
-import UpComing from "../home/upcoming/UpComing";
 import axios from "axios";
 import ReviewForm from "../../components/forms/ReviewForm";
 import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../features/reviews/reviewSlice";
+import Recommended from "../home/recommended/Recommended";
 
 export async function loader({ params }) {
   const response = await axios.get(
-    `http://localhost:3000/movies/${params.movieId}`
+    `${import.meta.env.VITE_BASE_URL}/movies/${params.movieId}`
   );
   const movie = response.data;
 
@@ -29,7 +29,7 @@ const MoviePage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/reviews?movie=${movie._id}`)
+      .get(`${import.meta.env.VITE_BASE_URL}/reviews?movie=${movie._id}`)
       .then((response) => {
         dispatch(addReview(response.data));
       });
@@ -149,7 +149,7 @@ const MoviePage = () => {
           <h3 className="text-lg md:text-xl text-gray-800 lg:text-xxl font-semibold pb-4">
             Related movies
           </h3>
-          <UpComing />
+          <Recommended />
         </div>
       </section>
     </main>

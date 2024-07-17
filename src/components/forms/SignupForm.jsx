@@ -17,7 +17,7 @@ export default function SignupForm() {
   const password = watch('password')
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post("http://localhost:3000/users", data);
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/users`, data);
       console.log("signup");
       navigate('/login')
       reset();
