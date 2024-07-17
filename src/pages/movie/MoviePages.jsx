@@ -84,7 +84,8 @@ const MoviePage = () => {
               )}
             </div>
             <p className="py-1 rounded-md text-xs sm:text-sm md:text-base px-2 bg-gray-200 sm:my-2">
-              {movie.language}
+              {/* join(", ") concatenates the array elements with a comma and space separator (", "),  */}
+        {movie.language.join(", ")} 
             </p>
             <p className="py-1 rounded-md px-2 text-xs sm:text-sm md:text-base  text-white font-semibold sm:my-2">
               <span>{movie.duration}</span> • <span>{movie.genre}</span> •{" "}
