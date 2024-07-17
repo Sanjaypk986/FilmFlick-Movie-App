@@ -11,8 +11,10 @@ import Home from './pages/home/Home';
 import store from './app/store'
 import { Provider } from 'react-redux'
 import AllMovies,{loader as moviesloader} from './pages/all movies/AllMovies';
-import MoviePage, {loader as movieloader} from './pages/movie/MoviePage';
-import SignUp from './pages/account/SignUp';
+import MoviePage, {loader as movieloader} from './pages/movie/MoviePages';
+import SignUp from './pages/account/Signups';
+import Login from './pages/account/Login';
+import Logout from './pages/account/Logout';
 
 const router = createBrowserRouter([
   {
@@ -35,8 +37,16 @@ const router = createBrowserRouter([
         loader: movieloader
       },
       {
-        path: "/account",
+        path: "/signup",
         element: <SignUp/>,
+      },
+      {
+        path: "/login",
+        element: <Login/>,
+      },
+      {
+        path: "/logout",
+        element: <Logout/>,
       },
     ],
   },

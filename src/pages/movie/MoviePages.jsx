@@ -17,8 +17,14 @@ export async function loader({ params }) {
   return { movie };
 }
 const MoviePage = () => {
+  // for review
+  const [visibleReviews, setVisibleReviews] = useState(4);
+  // loggedin or not
+  const isLoggedIn = useSelector((state) => state.login.isLogin);
+  // reviews state
   const reviews = useSelector((state) => state.review.reviews);
   const dispatch = useDispatch();
+  // received movie from loader
   const { movie } = useLoaderData();
 
   useEffect(() => {
@@ -26,9 +32,15 @@ const MoviePage = () => {
       .get(`http://localhost:3000/reviews?movie=${movie._id}`)
       .then((response) => {
         dispatch(addReview(response.data));
-        window.scrollTo(0, 0);
       });
   }, [movie]);
+
+  const loadMoreReviews = () => {
+    setVisibleReviews((prev) => prev + 4);
+  };
+  const loadLessReviews = () => {
+    setVisibleReviews(4);
+  };
   return (
     <main>
       <section
@@ -43,7 +55,7 @@ const MoviePage = () => {
             <img
               className="h-72 md:h-96 max-w-64 rounded-md  shadow-lg "
               src={movie.thumbnail}
-              alt=""
+              alt="movie-image"
             />
           </div>
           <div className="cols-span-1 flex flex-col gap-3 justify-center items-center sm:items-start whitespace-nowrap">
@@ -58,9 +70,18 @@ const MoviePage = () => {
                 </span>
                 5/10
               </span>
-              <Link className="bg-gray-200 hover:bg-gray-300 rounded-lg px-3 py-2 text-gray-800">
-                Add Review
-              </Link>
+              {isLoggedIn ? (
+                <a
+                  href="#add-review"
+                  className="bg-gray-200 hover:bg-gray-300 rounded-lg px-3 py-2 text-gray-800"
+                >
+                  Add Review
+                </a>
+              ) : (
+                <Link to={'/login'} className="bg-gray-200 hover:bg-gray-300 rounded-lg px-3 py-2 text-gray-800">
+                  Add Review
+                </Link>
+              )}
             </div>
             <p className="py-1 rounded-md text-xs sm:text-sm md:text-base px-2 bg-gray-200 sm:my-2">
               {movie.language}
@@ -85,21 +106,40 @@ const MoviePage = () => {
             {movie.description}
           </p>
         </div>
-        <div>
-          <h3 className="text-lg md:text-2xl  text-gray-800 font-semibold my-2 md:my-4">
-            Add reviews
-          </h3>
-          <ReviewForm movieId={movie._id} />
-        </div>
-        <div className="border-b-2 pb-5">
-          <h3 className="text-lg md:text-2xl  text-gray-800 font-semibold my-2 md:my-4">
+        {isLoggedIn && (
+          <div id="add-review">
+            <h3 className="text-lg md:text-2xl  text-gray-800 font-semibold my-2 md:my-4">
+              Add reviews
+            </h3>
+            <ReviewForm movieId={movie._id} />
+          </div>
+        )}
+        <div className="border-b-2 pb-5 flex flex-col justify-center items-center">
+          <h3 className="text-lg md:text-2xl text-gray-800 font-semibold my-2 md:my-4">
             Top reviews
           </h3>
           <div className="pb-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {reviews &&
-              reviews.map((review) => (
-                <ReviewCard key={review._id} review={review} />
-              ))}
+            {reviews.slice(0, visibleReviews).map((review) => (
+              <ReviewCard key={review._id} review={review} />
+            ))}
+          </div>
+          <div className="flex justify-center items-center ">
+            {visibleReviews < reviews.length && (
+              <button
+                onClick={loadMoreReviews}
+                className="border bg-gray-600 text-white hover:bg-gray-700 text-sm px-2 py-2 rounded-md mt-4 mx-3"
+              >
+                Load More
+              </button>
+            )}
+            {visibleReviews > 4 && (
+              <button
+                onClick={loadLessReviews}
+                className="border bg-gray-600 hover:bg-gray-700 text-white text-sm px-2 py-2 rounded-md mt-4 mx-3"
+              >
+                Show less
+              </button>
+            )}
           </div>
         </div>
       </section>

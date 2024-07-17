@@ -1,26 +1,45 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import MovieCard from "../../components/MovieCard";
 
-export async function loader() {
-  const response = await axios.get("http://localhost:3000/movies");
+export async function loader({ params, request }) {
+  const url = new URL(request.url);
+  const selectedLanguage = url.searchParams.get("language");
+  let movieUrl;
+  if (selectedLanguage) {
+    movieUrl = `http://localhost:3000/movies?language=${selectedLanguage}`;
+  } else {
+    movieUrl = "http://localhost:3000/movies";
+  }
+  const response = await axios.get(movieUrl);
   const movies = response.data;
-  console.log(movies);
   return { movies };
 }
 
 const AllMovies = () => {
+  const navigate = useNavigate();
   const { movies } = useLoaderData();
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
-  const languages = ["English", "Malayalam", "Tamil", "Hindi", "Telugu"];
+  const languages = [
+    "English",
+    "Malayalam",
+    "Tamil",
+    "Hindi",
+    "Telugu",
+    "Show-All",
+  ];
 
   const handleLanguage = (language) => {
-    if (language === "All") {
-      setSelectedLanguage("");
-    } else {
+    if (language) {
       setSelectedLanguage(language);
+      if (language === "Show-All") {
+        navigate("/movies");
+      } else {
+        const url = `/movies?language=${language}`;
+        navigate(url);
+      }
     }
   };
 
@@ -51,7 +70,7 @@ const AllMovies = () => {
           </div>
           <div className="col-span-2 px-3">
             <p className="text-xs md:text-base text-gray-700">
-              Selected Language: {selectedLanguage}
+              Language: {selectedLanguage}
             </p>
             <div className="mt-3 py-4">
               <div className="pb-4 grid grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">

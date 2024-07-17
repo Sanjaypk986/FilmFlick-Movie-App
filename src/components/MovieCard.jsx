@@ -19,7 +19,7 @@ const MovieCard = ({ movie }) => {
       <h3 className="text-xs sm:text-base font-semibold mt-3 text-gray-700 text-center h-8 overflow-hidden">
         {movie.title}
       </h3>
-      <p className="text-xs sm:text-sm my-1 text-gray-600 text-center h-6">
+      <p className="text-xs sm:text-sm my-1 text-gray-600 text-center h-6 overflow-hidden max-w-full truncate">
         {movie.language}
       </p>
     </article>

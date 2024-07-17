@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./Header.css";
 import { NavLinks } from "../../services/navLinks";
 
-const Header = () => {
+const Header = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -34,12 +34,26 @@ const Header = () => {
               <option value="">Kochi</option>
               <option value="">Kochi</option>
             </select>
-            <Link to={'/movies'} className="links hidden sm:block py-1 px-3 rounded-md whitespace-nowrap">
+            <Link
+              to={"/movies"}
+              className="links hidden sm:block py-1 px-3 rounded-md whitespace-nowrap"
+            >
               All Movies
             </Link>
-            <Link to={'/account'} className="links hidden sm:block py-1 px-3 rounded-md whitespace-nowrap">
+            <Link
+              to={"/signup"}
+              className="links hidden sm:block py-1 px-3 rounded-md whitespace-nowrap"
+            >
               Sign in
             </Link>
+            {isLoggedIn && (
+              <Link
+                to={"/logout"}
+                className="links hidden sm:block py-1 px-2 rounded-md whitespace-nowrap"
+              >
+                Logout
+              </Link>
+            )}
             <i
               className="fas fa-bars text-2xl text-gray-700 cursor-pointer sm:hidden"
               onClick={toggleMenu}
@@ -51,10 +65,10 @@ const Header = () => {
             isMenuOpen ? "open" : ""
           }`}
         >
-          <Link to="/" className="py-2 px-4 rounded-md">
+          <Link to="/movies" className="py-2 px-4 rounded-md">
             All Movies
           </Link>
-          <Link to="/account" className="py-2 px-4 rounded-md">
+          <Link to="/signup" className="py-2 px-4 rounded-md">
             Sign in
           </Link>
           <Link to="/contact" className="py-2 px-4 rounded-md">
@@ -64,6 +78,15 @@ const Header = () => {
             <option value="">Kochi</option>
             <option value="">Kochi</option>
           </select>
+
+          {isLoggedIn && (
+            <Link
+              to={"/logout"}
+              className="links py-1 px-2 mb-2 rounded-md whitespace-nowrap"
+            >
+              Logout
+            </Link>
+          )}
         </div>
       </div>
       <div className="bg-gray-200">

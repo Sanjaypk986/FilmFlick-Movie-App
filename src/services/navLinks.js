@@ -1,41 +1,41 @@
 export const NavLinks = [
   {
     genre: "Kids",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Action",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Comedy",
   },
   {
     genre: "Sci-Fi",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Adventure",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Drama",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Romantic",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Social",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Horror",
-    url: "#",
+    url: "/movies",
   },
   {
     genre: "Thriller",
-    url: "#",
+    url: "/movies",
   },
 ];
