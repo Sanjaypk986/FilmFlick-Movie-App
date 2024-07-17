@@ -36,18 +36,22 @@ const UpComing = () => {
                         &#8592;
                     </button>
                     <div
-                        ref={scrollContainerRef}
-                        className="pb-4 grid grid-flow-col auto-cols-max gap-2 sm:gap-4 overflow-x-auto scrollbar-hide"
-                    >
-                       {upcoming.length > 0 ? (
-                        upcoming.map((movie) => (
-                            <MovieCard key={movie._id}  movie={movie} 
-                            isUpcoming={true}/>
-                        ))
-                    ) : (
-                        <p>Loading movies...</p>
-                    )}
-                    </div>
+                ref={scrollContainerRef}
+                className="pb-4 grid grid-flow-col auto-cols-max gap-2 sm:gap-4 overflow-x-auto scrollbar-hide"
+            >
+                {upcoming.length > 0 ? (
+                    upcoming.map((movie) => (
+                        <div key={movie._id} className="min-w-[200px] sm:min-w-[240px]"> {/* Added: Responsive fixed width */}
+                            <MovieCard 
+                                movie={movie} 
+                                isUpcoming={true} // Changed: passing movie and isUpcoming props
+                            />
+                        </div>
+                    ))
+                ) : (
+                    <p>Loading movies...</p>
+                )}
+            </div>
                     <button
                         className="absolute mx-2 right-0 top-1/2 transform -translate-y-1/2 bg-gray-700 text-white px-2 py-1 rounded-full z-10"
                         onClick={scrollRight}
