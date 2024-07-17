@@ -88,7 +88,7 @@ const MoviePage = () => {
         {movie.language.join(", ")} 
             </p>
             <p className="py-1 rounded-md px-2 text-xs sm:text-sm md:text-base  text-white font-semibold sm:my-2">
-              <span>{movie.duration}</span> • <span>{movie.genre}</span> •{" "}
+              <span>{movie.duration}</span> • <span>{movie.genre.join(" ")}</span> •{" "}
               <span>{movie.releaseDate}</span>
             </p>
             <Link className=" links w-1/2 rounded-lg text-center py-2 px-3 font-semibold  sm:my-2">

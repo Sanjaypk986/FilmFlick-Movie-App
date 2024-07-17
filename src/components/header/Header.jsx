@@ -1,14 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.css";
 import { NavLinks } from "../../services/navLinks";
 
 const Header = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+  const handleGenre =(genre)=>{
+    const url = `/movies?genre=${genre}`
+    navigate(url)
+  }
 
   return (
     <header>
@@ -93,9 +98,9 @@ const Header = ({ isLoggedIn }) => {
         <nav className="container mx-auto py-3">
           <ul className="flex justify-start sm:justify-center items-center gap-5 text-gray-600 overflow-x-auto whitespace-nowrap no-scrollbar px-4">
             {NavLinks.map((link, index) => (
-              <li key={index}>
-                <Link to={link.url}>{link.genre}</Link>
-              </li>
+              <li key={index} onClick={() => handleGenre(link.genre)} className="cursor-pointer">
+              {link.genre}
+            </li>
             ))}
           </ul>
         </nav>
