@@ -5,7 +5,7 @@ import Footer from '../components/footer/Footer'
 import useScrollToTop from '../hooks/useScrollToTop'
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { changeLogginStatus } from '../features/login/loginSlice'
+import { changeLogginStatus, userLoginId } from '../features/login/loginSlice'
 
 
 const Root = () => {
@@ -16,14 +16,18 @@ const Root = () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/verify`,{withCredentials:true})
         const verifyLogin = response.data.verified
-        console.log(verifyLogin);
+        // login user id
+        const loginUserId = response.data.userId
+        // login status
         dispatch(changeLogginStatus(verifyLogin))
+        // logined user id
+        dispatch(userLoginId(loginUserId))
       } catch (error) {
         console.log(error);
       }
     }
     verify()
-  }, [])
+  }, [dispatch])
   
   useScrollToTop();
   return (

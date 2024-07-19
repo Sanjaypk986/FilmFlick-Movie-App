@@ -9,10 +9,11 @@ const ReviewCard = ({ review }) => {
   const dispatch = useDispatch()
 
   const loginUserId = useSelector((state) => state.login.loggedUserId);
+  console.log(loginUserId);
   const isReviewOwner = loginUserId === review.user._id
 
   if (!review || !review.user) {
-    return null; 
+    return null;
   }
 
   const toggleReview = () => {

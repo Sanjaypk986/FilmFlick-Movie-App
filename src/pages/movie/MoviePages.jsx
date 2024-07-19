@@ -32,12 +32,9 @@ const MoviePage = () => {
     const fetchReviews = async () => {
       try {
         const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/reviews?movie=${movie._id}`, { withCredentials: true });
-        const { reviews, userId } = response.data;
+        const reviews  = response.data;
         // Dispatch reviews to Redux store
         dispatch(addReview(reviews));
-        // to get userlogin details
-        dispatch(userLoginId(userId))
-        console.log(userId);
       } catch (error) {
         console.error('Error fetching reviews:', error);
       }

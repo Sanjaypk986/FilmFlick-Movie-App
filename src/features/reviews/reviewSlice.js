@@ -13,7 +13,7 @@ export const reviewSlice = createSlice({
         state.reviews.push(action.payload)
     },
     deleteReview: (state, action)=>{
-      state.reviews.filter((review)=> review._id === action.payload)
+     state.reviews = state.reviews.filter((review) => review._id !== action.payload);
   }
   }
 })

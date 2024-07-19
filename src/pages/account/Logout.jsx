@@ -2,7 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { changeLogginStatus } from '../../features/login/loginSlice'
+import { changeLogginStatus, userLoginId } from '../../features/login/loginSlice'
 
 const Logout = () => {
     const navigate = useNavigate()
@@ -12,6 +12,7 @@ const Logout = () => {
             try {
                 const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/auth/logout`,{withCredentials:true})
                 dispatch(changeLogginStatus(false))
+                dispatch(userLoginId(null))
                 navigate('/')
 
             } catch (error) {
