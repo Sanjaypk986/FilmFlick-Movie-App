@@ -7,6 +7,7 @@ import ReviewForm from "../../components/forms/ReviewForm";
 import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../features/reviews/reviewSlice";
 import Recommended from "../home/recommended/Recommended";
+import { userLoginId } from "../../features/login/loginSlice";
 
 export async function loader({ params }) {
   const response = await axios.get(
@@ -28,12 +29,22 @@ const MoviePage = () => {
   const { movie } = useLoaderData();
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BASE_URL}/reviews?movie=${movie._id}`)
-      .then((response) => {
-        dispatch(addReview(response.data));
-      });
-  }, [movie]);
+    const fetchReviews = async () => {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/reviews?movie=${movie._id}`, { withCredentials: true });
+        const { reviews, userId } = response.data;
+        // Dispatch reviews to Redux store
+        dispatch(addReview(reviews));
+        // to get userlogin details
+        dispatch(userLoginId(userId))
+        console.log(userId);
+      } catch (error) {
+        console.error('Error fetching reviews:', error);
+      }
+    };
+
+    fetchReviews();
+  }, [movie, dispatch]);
 
   const loadMoreReviews = () => {
     setVisibleReviews((prev) => prev + 4);

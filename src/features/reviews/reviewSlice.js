@@ -11,11 +11,14 @@ export const reviewSlice = createSlice({
     },
     addOneReview: (state, action)=>{
         state.reviews.push(action.payload)
-    }
+    },
+    deleteReview: (state, action)=>{
+      state.reviews.filter((review)=> review._id === action.payload)
+  }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { addReview, addOneReview } = reviewSlice.actions
+export const { addReview, addOneReview, deleteReview} = reviewSlice.actions
 
 export default reviewSlice.reducer
