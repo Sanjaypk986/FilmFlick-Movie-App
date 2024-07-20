@@ -7,7 +7,6 @@ import ReviewForm from "../../components/forms/ReviewForm";
 import { useDispatch, useSelector } from "react-redux";
 import { addReview } from "../../features/reviews/reviewSlice";
 import Recommended from "../home/recommended/Recommended";
-import { userLoginId } from "../../features/login/loginSlice";
 
 export async function loader({ params }) {
   const response = await axios.get(

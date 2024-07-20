@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { changeLogginStatus } from "../../features/login/loginSlice";
+import { changeLogginStatus, userLoginId } from "../../features/login/loginSlice";
 
 export default function LoginForm() {
   const navigate = useNavigate()
@@ -23,6 +23,7 @@ export default function LoginForm() {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/auth/login`,data,{withCredentials: true})
       console.log("login succussfully");
       dispatch(changeLogginStatus(true))
+      dispatch(userLoginId(response.data.userId))
       navigate('/')
       reset();
       setErrorMessage("");
