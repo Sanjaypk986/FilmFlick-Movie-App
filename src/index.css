@@ -15,3 +15,10 @@ h1,h2,h3,h4{
 .background{
   background-color: #F5F5F5;
 }
+.description-view {
+  white-space: pre-wrap; /* Preserve whitespace and wrap text */
+  overflow-wrap: break-word; /* Break long words to prevent overflow */
+  word-break: break-word; /* Ensure words break to prevent overflow */
+  max-height: 300px; /* Adjust as needed */
+  overflow-y: auto; /* Add scroll if content overflows */
+}
