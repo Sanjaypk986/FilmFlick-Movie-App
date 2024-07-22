@@ -102,7 +102,7 @@ const ReviewCard = ({ review }) => {
       {!edit ? (
         <div className="overflow-hidden">
           <h5 className="text-sm md:text-base font-semibold text-gray-700">{updatedTitle}</h5>
-          <p className="text-xs sm:text-sm mt-2 w-50 text-gray-600 text-justify">
+          <p className="text-xs sm:text-sm mt-2 w-50 text-gray-600 text-justify break-words">
             {showFullReview ? updatedDescription : limitedContent}
             {!showFullReview && updatedDescription.length > 200 && (
               <button onClick={toggleReview} className="text-blue-500 mx-2 hover:underline focus:outline-none">
@@ -129,7 +129,7 @@ const ReviewCard = ({ review }) => {
             <textarea
               value={updatedDescription}
               onChange={(e) => setUpdatedDescription(e.target.value)}
-              className="mt-1 block w-full p-2 text-gray-600 border rounded-md focus:outline-none focus:border-gray-500"
+              className="mt-1 block w-full p-2 text-gray-600 border rounded-md focus:outline-none focus:border-gray-500 break-words"
               placeholder="Description"
               rows="5"
             />
