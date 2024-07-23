@@ -5,15 +5,24 @@ import { NavLinks } from "../../services/navLinks";
 
 const Header = ({ isLoggedIn }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate()
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
-  const handleGenre =(genre)=>{
-    const url = `/movies?genre=${genre}`
-    navigate(url)
-  }
+  const handleGenre = (genre) => {
+    const url = `/movies?genre=${genre}`;
+    navigate(url);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (search.trim()) {
+      const url = `/movies?search=${search.trim()}`; // Ensure `search` is used as query
+      navigate(url);
+    }
+  };
 
   return (
     <header>
@@ -25,13 +34,18 @@ const Header = ({ isLoggedIn }) => {
                 <span>F</span>ilm<span>F</span>lick
               </Link>
             </span>
-            <div className="bg-white hidden sm:flex justify-center items-center gap-2 px-3 py-1 w-full border rounded-md">
-              <i className="fas fa-search text-gray-700"></i>
-              <input
-                type="text"
-                className="px-4 py-1 w-full bg-transparent text-sm focus:outline-none text-gray-600"
-                placeholder="Search Movies..."
-              />
+            <div className="w-full">
+              <form onSubmit={handleSearch} className="bg-white hidden sm:flex justify-center items-center gap-2 px-3 py-1 border rounded-md">
+                <button type="submit">
+                  <i className="fas fa-search text-gray-700"></i>
+                </button>
+                <input
+                  type="text"
+                  onChange={(e)=>setSearch(e.target.value)}
+                  className="px-4 py-1 w-full bg-transparent text-sm focus:outline-none text-gray-600"
+                  placeholder="Search Movies..."
+                />
+              </form>
             </div>
           </div>
           <div className="flex items-center sm:gap-8 text-sm">
@@ -98,9 +112,13 @@ const Header = ({ isLoggedIn }) => {
         <nav className="container mx-auto py-3">
           <ul className="flex justify-start sm:justify-center items-center gap-5 text-gray-600 overflow-x-auto whitespace-nowrap no-scrollbar px-4">
             {NavLinks.map((link, index) => (
-              <li key={index} onClick={() => handleGenre(link.genre)} className="cursor-pointer">
-              {link.genre}
-            </li>
+              <li
+                key={index}
+                onClick={() => handleGenre(link.genre)}
+                className="cursor-pointer"
+              >
+                {link.genre}
+              </li>
             ))}
           </ul>
         </nav>

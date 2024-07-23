@@ -9,10 +9,12 @@ export async function loader({ params, request }) {
   const selectedLanguage = url.searchParams.get("language");
   // filtering using genre
   const selectedGenre = url.searchParams.get("genre");
+  //  search filter
+  const searchInput = url.searchParams.get("search");
 
   let movieUrl = `${import.meta.env.VITE_BASE_URL}/movies`;
 
-  if (selectedLanguage || selectedGenre) {
+  if (selectedLanguage || selectedGenre || searchInput) {
     // Create an instance of URLSearchParams
     const searchParams = new URLSearchParams();
 
@@ -25,19 +27,26 @@ export async function loader({ params, request }) {
     if (selectedGenre) {
       searchParams.set("genre", selectedGenre);
     }
+    // Add the genre parameter if selected
+    if (searchInput) {
+      searchParams.set("search", searchInput);
+    }
 
     // Append the query string to the base URL
-    movieUrl = `${import.meta.env.VITE_BASE_URL}/movies?${searchParams.toString()}`;
+    movieUrl = `${
+      import.meta.env.VITE_BASE_URL
+    }/movies?${searchParams.toString()}`;
   }
 
   const response = await axios.get(movieUrl);
   const movies = response.data;
-  return { movies, selectedGenre,selectedLanguage}; 
+  return { movies, selectedGenre, selectedLanguage, searchInput };
 }
 
 const AllMovies = () => {
   const navigate = useNavigate();
-  const { movies, selectedGenre,selectedLanguage} = useLoaderData();
+  const { movies, selectedGenre, selectedLanguage, searchInput } =
+    useLoaderData();
 
   const languages = [
     "English",
@@ -69,7 +78,7 @@ const AllMovies = () => {
               {selectedLanguage && `${selectedLanguage} `}
               {/* if slected language available then show heading as Lnaguage + movies */}
               {selectedGenre && `${selectedGenre} `}
-                Movies
+              Movies
             </h5>
 
             <div className="flex flex-wrap gap-2 justify-center my-3 py-3">
@@ -88,16 +97,18 @@ const AllMovies = () => {
               ))}
             </div>
           </div>
-          <div className="col-span-2 px-3">   
+          <div className="col-span-2 px-3">
             <div className="mt-3 py-4">
-            {movies && movies.length > 0 ? (
+              {movies && movies.length > 0 ? (
                 <div className="pb-4 grid grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
                   {movies.map((movie) => (
                     <MovieCard key={movie._id} movie={movie} />
                   ))}
                 </div>
               ) : (
-                <p className="text-gray-700 text-center">No movies available.</p>
+                <p className="text-gray-700 text-center">
+                  No movies available.
+                </p>
               )}
             </div>
           </div>
