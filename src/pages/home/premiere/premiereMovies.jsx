@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import MovieCard from "../../../components/MovieCard";
 import axios from "axios";
 
-const Recommended = () => {
+const PremiereMovies = () => {
     const [movies, setMovies] = useState([]);
     const [visibleMovies,setVisibleMovies] = useState(5)
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/movies`);
+                const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/premiere`);
                 const movies = response.data;
                 setMovies(movies);
             } catch (error) {
@@ -25,11 +25,11 @@ const Recommended = () => {
         setVisibleMovies(prev => prev - 5);
       }
     return (
-        <section className="bg-gray-200">
             <div className="container mx-auto px-2 mt-3 py-4">
-                <h3 className="text-lg md:text-xl lg:text-2xl font-semibold pb-4">
-                    Recommended For You...
+                <h3 className="text-lg md:text-xl lg:text-2xl text-white font-semibold py-1">
+                    Premieres
                 </h3>
+                <p className="text-xs sm:text-sm pb-2 text-gray-100 text-start">Brand new releases on every friday</p>
                 <div className="pb-4 grid grid-cols-3 md:grid-cols-5 gap-2 sm:gap-4">
                     {movies.length > 0 ? (
                         movies.slice(0, visibleMovies).map((movie) => (
@@ -59,8 +59,7 @@ const Recommended = () => {
             )}
           </div>
             </div>
-        </section>
     );
 };
 
-export default Recommended;
+export default PremiereMovies;

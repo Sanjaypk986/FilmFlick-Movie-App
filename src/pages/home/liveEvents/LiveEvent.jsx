@@ -2,9 +2,9 @@ import React from "react";
 
 const LiveEvent = () => {
   return (
-    <section className="pt-6">
+    <section className="pt-6 pb-9">
       <div className="container mx-auto px-2 mt-3 py-4">
-        <h3 className="text-lg md:text-xl lg:text-xxl font-semibold pb-4">
+        <h3 className="text-lg md:text-xl lg:text-2xl font-semibold pb-4">
           The Best Of Live Events
         </h3>
         <div className="grid grid-cols-4 md:grid-cols-5 gap-2 md:gap-4">
