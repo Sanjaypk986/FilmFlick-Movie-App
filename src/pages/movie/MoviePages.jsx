@@ -30,12 +30,15 @@ const MoviePage = () => {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/reviews?movie=${movie._id}`, { withCredentials: true });
-        const reviews  = response.data;
+        const response = await axios.get(
+          `${import.meta.env.VITE_BASE_URL}/reviews?movie=${movie._id}`,
+          { withCredentials: true }
+        );
+        const reviews = response.data;
         // Dispatch reviews to Redux store
         dispatch(addReview(reviews));
       } catch (error) {
-        console.error('Error fetching reviews:', error);
+        console.error("Error fetching reviews:", error);
       }
     };
 
@@ -85,17 +88,21 @@ const MoviePage = () => {
                   Add Review
                 </a>
               ) : (
-                <Link to={'/login'} className="bg-gray-200 hover:bg-gray-300 rounded-lg px-3 py-2 text-gray-800">
+                <Link
+                  to={"/login"}
+                  className="bg-gray-200 hover:bg-gray-300 rounded-lg px-3 py-2 text-gray-800"
+                >
                   Add Review
                 </Link>
               )}
             </div>
             <p className="py-1 rounded-md text-xs sm:text-sm md:text-base px-2 bg-gray-200 sm:my-2">
               {/* join(", ") concatenates the array elements with a comma and space separator (", "),  */}
-        {movie.language.join(", ")} 
+              {movie.language.join(", ")}
             </p>
             <p className="py-1 rounded-md px-2 text-xs sm:text-sm md:text-base  text-white font-semibold sm:my-2">
-              <span>{movie.duration}</span> • <span>{movie.genre.join(" ")}</span> •{" "}
+              <span>{movie.duration}</span> •{" "}
+              <span>{movie.genre.join(" ")}</span> •{" "}
               <span>{movie.releaseDate}</span>
             </p>
             <Link className=" links w-1/2 rounded-lg text-center py-2 px-3 font-semibold  sm:my-2">
